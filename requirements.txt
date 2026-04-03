@@ -1,9 +1,9 @@
-openenv-core>=0.2.2
+openenv-core==0.2.2
 fastapi==0.111.0
-uvicorn[standard]>=0.35.0
-pydantic>=2.11.7
+uvicorn[standard]==0.35.0
+pydantic==2.11.7
 openai>=1.0.0
 stable-baselines3==2.3.2
 gymnasium==0.29.1
-torch==2.3.0
+torch>=2.2.0,<2.4.0
 numpy==1.26.4

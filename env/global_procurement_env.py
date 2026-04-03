@@ -11,13 +11,10 @@ from env.supply_chain_sim import SupplyChainState, apply_action
 from env.constraint_engine import load_policy, validate_action
 from env.disruption_engine import DisruptionEngine
 from env.tasks import task1_easy, task2_medium, task3_hard
-<<<<<<< HEAD
-=======
 from graders import grader1, grader2, grader3
 
 # Map task number to its grader module
 GRADER_MAP = {1: grader1, 2: grader2, 3: grader3}
->>>>>>> fca1d83e (Day 3 complete)
 
 
 # Map task number to its config module
@@ -41,12 +38,9 @@ class GlobalProcurementEnv:
         self.current_task: int = 1
         self._task_config = None
         self._active_disruptions: list = []
-<<<<<<< HEAD
-=======
         # Episode log — rebuilt on every reset(), consumed by graders at done=True
         self._episode_log: dict = {}
         self._grader_score: float | None = None
->>>>>>> fca1d83e (Day 3 complete)
 
     def reset(self, task: int = 1, seed: int = 42) -> Observation:
         """
@@ -60,8 +54,6 @@ class GlobalProcurementEnv:
         self.seed = seed
         self.is_done = False
         self._active_disruptions = []
-<<<<<<< HEAD
-=======
         self._grader_score = None
         # Fresh episode log — never mutate the old one (Rule 2)
         self._episode_log = {
@@ -71,7 +63,6 @@ class GlobalProcurementEnv:
             "total_carbon": 0.0,
             "final_budget": 200000.0,
         }
->>>>>>> fca1d83e (Day 3 complete)
 
         # Load task config
         self._task_config = TASK_CONFIGS.get(task, task1_easy)
@@ -125,8 +116,6 @@ class GlobalProcurementEnv:
         if not is_valid:
             self._state.violations += 1
             self.is_done = True
-<<<<<<< HEAD
-=======
             # Log the step before grading
             self._episode_log["steps"].append(self._state.step_count)
             self._episode_log["total_violations"] = self._state.violations
@@ -135,7 +124,6 @@ class GlobalProcurementEnv:
             self._episode_log["final_budget"] = self._state.budget
             grader_module = GRADER_MAP.get(self.task, grader1)
             self._grader_score = grader_module.grade(self._episode_log)
->>>>>>> fca1d83e (Day 3 complete)
             obs = self._build_observation()
             reward = Reward(
                 value=-1.0, compliance=0.0, cost_efficiency=0.0,
@@ -148,8 +136,6 @@ class GlobalProcurementEnv:
         done = self._state.step_count >= self._task_config.MAX_STEPS
         self.is_done = done
 
-<<<<<<< HEAD
-=======
         # Track episode log for grader
         self._episode_log["steps"].append(self._state.step_count)
         self._episode_log["total_violations"] = self._state.violations
@@ -162,7 +148,6 @@ class GlobalProcurementEnv:
             grader_module = GRADER_MAP.get(self.task, grader1)
             self._grader_score = grader_module.grade(self._episode_log)
 
->>>>>>> fca1d83e (Day 3 complete)
         return self._build_observation(), reward_obj, done, {}
 
     def state(self) -> Observation:
@@ -197,11 +182,7 @@ class GlobalProcurementEnv:
             active_disruptions=list(self._active_disruptions),
             policy_violations_this_episode=self._state.violations,
             current_task=self.task,
-<<<<<<< HEAD
-            grader_score=None,
-=======
             grader_score=self._grader_score,
->>>>>>> fca1d83e (Day 3 complete)
         )
 
     def _load_suppliers_for_task(self, task: int) -> list:

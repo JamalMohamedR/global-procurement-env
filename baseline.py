@@ -33,11 +33,7 @@ def run_task(task_id: int, seed: int = 42) -> float:
     # Get grader score via state endpoint
     state_resp = requests.get(f"{BASE_URL}/state")
     score = state_resp.json().get("grader_score", 0.0)
-<<<<<<< HEAD
-    return score
-=======
     return score or 0.0
->>>>>>> fca1d83e (Day 3 complete)
 
 if __name__ == "__main__":
     print("Running baseline random agent...")
