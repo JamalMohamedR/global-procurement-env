@@ -1,7 +1,7 @@
 import requests
 import random
 
-BASE_URL = "http://localhost:7860"  # Update to live HF URL on Day 4
+BASE_URL = "https://JEN-chad-global-procurement-env.hf.space"
 
 def run_task(task_id: int, seed: int = 42) -> float:
     """Runs one episode with a random agent and returns the grader score."""

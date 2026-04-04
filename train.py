@@ -27,5 +27,7 @@ def train_task(task_id: int, total_timesteps: int, save_path: str):
 
 
 if __name__ == "__main__":
-    train_task(task_id=1, total_timesteps=50000, save_path="models/task1_ppo")
-    # Task 2 and 3 training happens on Day 4
+    # Day 3 already trained Task 1 — don't re-run that unless needed
+    # train_task(task_id=1, total_timesteps=50000, save_path="models/task1_ppo")
+    # train_task(task_id=2, total_timesteps=100000, save_path="models/task2_ppo")
+    train_task(task_id=3, total_timesteps=50000, save_path="models/task3_ppo")
