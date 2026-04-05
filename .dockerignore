@@ -1,0 +1,13 @@
+.git
+.gitignore
+.agents
+*.md
+models/
+__pycache__
+**/__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+tests/
+md_files/

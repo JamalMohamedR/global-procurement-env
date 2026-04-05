@@ -1,9 +1,25 @@
-openenv-core==0.2.2
-fastapi==0.111.0
-uvicorn[standard]==0.35.0
-pydantic==2.11.7
-openai>=1.0.0
+# --- Web Framework ---
+fastapi==0.115.12
+fastapi-cli==0.0.5          # pin to stop pip backtracking through 20+ versions
+uvicorn[standard]==0.35.0   # fastmcp (via openenv-core) REQUIRES >=0.35 — do NOT lower this
+
+# --- Data Validation ---
+pydantic==2.11.7            # fastmcp (via openenv-core) REQUIRES >=2.11.7 — do NOT lower this
+
+# --- OpenAI ---
+openai>=2.7.2               # openenv-core REQUIRES >=2.7.2 — do NOT use v1.x
+
+# --- ML / RL ---
+# torch is pre-installed as CPU-only in the Dockerfile Step 1.
+# Pinning it here ensures pip in Step 2 treats it as already satisfied
+# and does NOT upgrade to a heavy CUDA build via openenv-core/fastmcp deps.
+torch==2.3.0+cpu
 stable-baselines3==2.3.2
 gymnasium==0.29.1
-torch>=2.2.0,<2.4.0
+
+# --- Core Dependencies ---
 numpy==1.26.4
+
+# --- OpenEnv ---
+openenv-core>=0.2.2
+fastmcp==3.2.0              # pin directly to stop pip backtracking through all versions
